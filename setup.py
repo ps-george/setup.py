@@ -20,50 +20,14 @@ EMAIL = 'me@example.com'
 AUTHOR = 'Awesome Soul'
 REQUIRES_PYTHON = '>=3.6.0'
 VERSION = None
+# What packages are required for this module to be executed?
+REQUIRED = []
+DEPENDENCY_LINKS = []
 
 # The rest you shouldn't have to touch too much :)
 # ------------------------------------------------
 # Except, perhaps the License and Trove Classifiers!
 # If you do change the License, remember to change the Trove Classifier for that!
-
-def get_requirements(remove_links=True):
-    """
-    lists the requirements to install.
-
-    [source](https://stackoverflow.com/questions/12518499/pip-ignores-dependency-links-in-setup-py#answer-38043585)
-    """
-    requirements = []
-    try:
-        with open('requirements.txt') as f:
-            requirements = f.read().splitlines()
-    except Exception as ex:
-        with open('DecoraterBotUtils.egg-info\requires.txt') as f:
-            requirements = f.read().splitlines()
-    if remove_links:
-        for requirement in requirements:
-            # git repository url.
-            if requirement.startswith("git:"):
-                requirements.remove(requirement)
-    return requirements
-
-# What packages are required for this module to be executed?
-REQUIRED = get_requirements()
-
-
-def get_links():
-    """
-    gets URL Dependency links.
-
-    [source](https://stackoverflow.com/questions/12518499/pip-ignores-dependency-links-in-setup-py#answer-38043585)
-    """
-    links_list = get_requirements(remove_links=False)
-    for link in links_list:
-        # git repository url.
-        if not link.startswith("git:"):
-            links_list.remove(link)
-    return links_list
-
-DEPENDENCY_LINKS = get_links()
 
 here = os.path.abspath(os.path.dirname(__file__))
 
